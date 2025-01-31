@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لعبة اختيار اللون</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+        }
+        h1 {
+            color: #333;
+        }
+        #game-container {
+            margin-top: 20px;
+        }
+        .color-btn {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: white;
+            border-radius: 10px;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>اختر اللون الصحيح!</h1>
+    <p id="question">اختر اللون: <strong id="targetColor"></strong></p>
+
+    <div id="game-container">
+        <button class="color-btn" style="background-color: red;" onclick="checkAnswer('red')">أحمر</button>
+        <button class="color-btn" style="background-color: green;" onclick="checkAnswer('green')">أخضر</button>
+        <button class="color-btn" style="background-color: blue;" onclick="checkAnswer('blue')">أزرق</button>
+        <button class="color-btn" style="background-color: yellow; color: black;" onclick="checkAnswer('yellow')">أصفر</button>
+    </div>
+
+    <p id="message"></p>
+
+    <script>
+        let colors = ["red", "green", "blue", "yellow"];
+        let targetColor = "";
+
+        function startGame() {
+            targetColor = colors[Math.floor(Math.random() * colors.length)];
+            document.getElementById("targetColor").textContent = targetColor;
+            document.getElementById("message").textContent = "";
+        }
+
+        function checkAnswer(color) {
+            if (color === targetColor) {
+                document.getElementById("message").textContent = "🎉 أحسنت! الإجابة صحيحة!";
+                document.getElementById("message").style.color = "green";
+            } else {
+                document.getElementById("message").textContent = "❌ خطأ! حاول مرة أخرى.";
+                document.getElementById("message").style.color = "red";
+            }
+            setTimeout(startGame, 2000); // إعادة تشغيل اللعبة بعد 2 ثانية
+        }
+
+        startGame(); // بدء اللعبة عند تحميل الصفحة
+    </script>
+
+</body>
+</html>
+
